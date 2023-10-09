@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/login_top"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/skyblue"
+        android:fontFamily="@font/tenten"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:paddingTop="25dp"
+        android:paddingStart="170dp"
+        android:id="@+id/top_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="로그인"
+        android:fontFamily="@font/tenten"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/back_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="설명"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/login_backgroud_iv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_top"/>
+
+
+    <EditText
+        android:id="@+id/editTextId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="15"
+        android:hint="아이디"
+        android:inputType="textPersonName"
+        android:fontFamily="@font/tenten"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_backgroud_iv" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="15"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:fontFamily="@font/tenten"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextId" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_round"
+        android:fontFamily="@font/tenten"
+        android:text="로그인"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextPassword" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

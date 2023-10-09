@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <View
+        android:id="@+id/login_top"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/skyblue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/login_backgroud_iv"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_top" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:fontFamily="@font/tenten"
+        android:paddingStart="120dp"
+        android:paddingTop="30dp"
+        android:text="00체육관"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@id/login"
+        app:layout_constraintTop_toBottomOf="@id/login_top" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button_round"
+        android:fontFamily="@font/tenten"
+        android:text="로그인"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_backgroud_iv" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_round"
+        android:fontFamily="@font/tenten"
+        android:text="회원가입"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login" />
+</androidx.constraintlayout.widget.ConstraintLayout>
