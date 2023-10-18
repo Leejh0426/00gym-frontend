@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@id/home_top" />
 
     <Button
-        android:id="@+id/my_info"
+        android:id="@+id/my_info_bt"
         android:layout_width="240dp"
         android:layout_height="80dp"
         android:background="@drawable/button_round"
@@ -80,7 +80,7 @@
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_info" />
+        app:layout_constraintTop_toBottomOf="@id/my_info_bt" />
 
     <Button
         android:id="@+id/reserve_inquiry"

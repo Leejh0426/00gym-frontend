@@ -8,7 +8,7 @@ import android.view.View
 class MyInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_myinfo)
 
         val back = findViewById<View>(R.id.back)
         back.setOnClickListener {

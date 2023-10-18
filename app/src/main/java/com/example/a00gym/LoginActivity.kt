@@ -16,5 +16,11 @@ class LoginActivity : AppCompatActivity() {
             //startActivity(intent)
             finish()
         }
+
+        val login = findViewById<View>(R.id.login)
+        login.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
