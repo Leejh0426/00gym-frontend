@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/login_backgroud_iv"
+        android:id="@+id/login_background_iv"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:src="@drawable/logo"
@@ -32,7 +32,7 @@
         android:fontFamily="@font/tenten"
         android:paddingStart="120dp"
         android:paddingTop="30dp"
-        android:text="00체육관"
+        android:text="00풋살장"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@id/login"
         app:layout_constraintTop_toBottomOf="@id/login_top" />
@@ -47,10 +47,10 @@
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_backgroud_iv" />
+        app:layout_constraintTop_toBottomOf="@id/login_background_iv" />
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/signup"
         android:layout_width="240dp"
         android:layout_height="80dp"
         android:layout_marginTop="40dp"
