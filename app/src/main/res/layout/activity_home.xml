@@ -27,14 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/home_background_iv"
         android:layout_width="match_parent"
@@ -58,19 +50,7 @@
         app:layout_constraintTop_toBottomOf="@id/home_top" />
 
     <Button
-        android:id="@+id/my_info_bt"
-        android:layout_width="240dp"
-        android:layout_height="80dp"
-        android:background="@drawable/button_round"
-        android:fontFamily="@font/tenten"
-        android:text="내정보"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/home_background_iv" />
-
-    <Button
-        android:id="@+id/reserve_date"
+        android:id="@+id/reserve"
         android:layout_width="240dp"
         android:layout_height="80dp"
         android:layout_marginTop="30dp"
@@ -80,20 +60,20 @@
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_info_bt" />
+        app:layout_constraintTop_toBottomOf="@id/home_background_iv" />
 
     <Button
         android:id="@+id/reserve_inquiry"
         android:layout_width="240dp"
         android:layout_height="80dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button_round"
         android:fontFamily="@font/tenten"
         android:text="예약조회"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reserve_date" />
+        app:layout_constraintTop_toBottomOf="@id/reserve" />
 
 
 

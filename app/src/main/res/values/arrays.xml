@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gym_List">
+        <item>진주</item>
+        <item>거제</item>
+        <item>창원</item>
+    </string-array>
+</resources>

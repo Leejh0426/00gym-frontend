@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ListActivity">
 
     <View
-        android:id="@+id/login_top"
+        android:id="@+id/list_top"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/skyblue"
@@ -18,11 +18,11 @@
 
     <TextView
         android:paddingTop="25dp"
-        android:paddingStart="170dp"
+        android:paddingStart="140dp"
         android:id="@+id/top_title"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="로그인"
+        android:text="풋살장 목록"
         android:fontFamily="@font/tenten"
         android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,70 +39,65 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/login_background_iv"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_top"/>
-
-    <TextView
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="00풋살장"
-        android:fontFamily="@font/tenten"
-        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:entries="@array/gym_List"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
-    <EditText
-        android:id="@+id/editTextId"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:ems="15"
-        android:hint="아이디"
-        android:inputType="textPersonName"
-        android:fontFamily="@font/tenten"
-        android:background="#EBE6E6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_background_iv" />
-
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="25dp"
-        android:ems="15"
-        android:hint="비밀번호"
-        android:inputType="textPassword"
-        android:fontFamily="@font/tenten"
-        android:background="#EBE6E6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextId" />
+        app:layout_constraintTop_toBottomOf="@id/list_top"/>
 
     <Button
-        android:id="@+id/login"
-        android:layout_width="240dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="40dp"
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/spinner"/>
+
+    <TextView
+        android:id="@+id/reserve_date"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="15dp"
+        android:fontFamily="@font/tenten"
+        android:background="#EBE6E6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner"/>
+
+    <TextView
+        android:id="@+id/gym_name"
+        android:layout_width="280dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/tenten"
+        android:background="#EBE6E6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reserve_date"/>
+
+
+    <Button
+        android:id="@+id/inquiry2"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="630dp"
         android:background="@drawable/button_round"
         android:fontFamily="@font/tenten"
-        android:text="로그인"
+        android:text="조회하기"
         android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:inputType="phone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextPassword" />
-
-
-
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

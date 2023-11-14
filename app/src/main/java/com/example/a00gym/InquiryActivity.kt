@@ -1,14 +1,13 @@
 package com.example.a00gym
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 
-class SignupActivity : AppCompatActivity() {
+class InquiryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
+        setContentView(R.layout.activity_inquiry)
 
         val back = findViewById<View>(R.id.back)
         back.setOnClickListener {

@@ -10,16 +10,9 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val logout = findViewById<View>(R.id.logout)
-        logout.setOnClickListener {
-            //val intent = Intent(this, MainActivity::class.java)
-            //startActivity(intent)
-            finish()
-        }
-
-        val my_info_bt = findViewById<View>(R.id.my_info_bt)
-        my_info_bt.setOnClickListener {
-            val intent = Intent(this, MyInfoActivity::class.java)
+        val reserve = findViewById<View>(R.id.reserve)
+        reserve.setOnClickListener {
+            val intent = Intent(this, DateActivity::class.java)
             startActivity(intent)
         }
     }
