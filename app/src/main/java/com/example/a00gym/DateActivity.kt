@@ -41,8 +41,6 @@ class DateActivity : AppCompatActivity() {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val dateString = dateFormat.format(selectedDate.time)
 
-            sendDataToServer(DateData(1, dateString))
-
             // 다음 화면으로 데이터를 전달하는 Intent 생성
             val intent = Intent(this, ListActivity::class.java)
             intent.putExtra("SELECTED_DATE", dateString)
@@ -57,19 +55,4 @@ class DateActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendDataToServer(time: DateData) {
-        val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
-        gymInterface.sendSelectedDate(time).enqueue(object : Callback<Void> {
-            @SuppressLint("SetTextI18n")
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-                    Log.d("Date", "날짜 전달 성공")
-                }
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.d("Date", "날짜 전달 실패")
-            }
-        })
-    }
 }

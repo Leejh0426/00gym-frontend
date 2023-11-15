@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object GymRetrofitClient {
     val fRetrofit = initRetrofit()
-    private const val URL = "https://52.79.87.246:8080/"
+    private const val URL = "https://00gym.shop"
     private fun initRetrofit() : Retrofit =
         Retrofit.Builder()
             .baseUrl(URL)

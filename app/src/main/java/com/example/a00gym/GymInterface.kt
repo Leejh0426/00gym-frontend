@@ -7,9 +7,7 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface GymInterface {
-    @GET("gym")
+    @GET("/gym")
     fun getGyms(@Query("location") location: String): Call<List<Gym>>
 
-    @POST("gym-status")
-    fun sendSelectedDate(@Body dateData: DateData): Call<Void>
 }

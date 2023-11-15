@@ -60,6 +60,20 @@ class ListActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    private fun updateUI(gyms: List<Gym>) {
+        // TextView로 체육관 정보를 표시할 것이라고 가정
+        val gymInfo = findViewById<TextView>(R.id.gym_info)
+
+        // 체육관 정보를 연결할 StringBuilder 생성
+        val stringBuilder = StringBuilder()
+
+        for (gym in gyms) {
+            stringBuilder.append("체육관 이름: ${gym.gymName}\n")
+        }
+
+        // TextView에 연결된 체육관 정보를 설정
+        gymInfo.text = stringBuilder.toString()
+    }
     private fun getGymData(location: String) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
         gymInterface.getGyms(location).enqueue(object : Callback<List<Gym>> {
@@ -67,6 +81,9 @@ class ListActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Gym>>, response: Response<List<Gym>>) {
                 if (response.isSuccessful) {
                     Log.d("Gymlist", "체육관 목록 요청 성공")
+                    Log.d("Gymlist", "받은 데이터: ${response.body()}")
+
+                    updateUI(response.body() ?: emptyList())
                 }
             }
 
@@ -75,6 +92,7 @@ class ListActivity : AppCompatActivity() {
             }
         })
     }
+
 }
 
 
