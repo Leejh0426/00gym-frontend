@@ -24,7 +24,7 @@ class ListActivity : AppCompatActivity() {
         mBinding = ActivityListBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        mBinding.gymName.text
+        mBinding.location.text
 
         val testList = resources.getStringArray(R.array.gym_List)
 
@@ -34,7 +34,7 @@ class ListActivity : AppCompatActivity() {
         mBinding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 Log.d("FlightList", "선택")
-                mBinding.gymName.text = parent.getItemAtPosition(position).toString()
+                mBinding.location.text = parent.getItemAtPosition(position).toString()
                 getGymData(parent.getItemAtPosition(position).toString())
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
