@@ -1,18 +1,13 @@
 package com.example.a00gym
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.*
 
 class DateActivity : AppCompatActivity() {
@@ -38,7 +33,7 @@ class DateActivity : AppCompatActivity() {
             selectedDate.set(year, month, day)
 
             // SimpleDateFormat을 사용하여 선택한 날짜를 문자열로 변환
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val dateString = dateFormat.format(selectedDate.time)
 
             // 다음 화면으로 데이터를 전달하는 Intent 생성

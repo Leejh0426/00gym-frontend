@@ -7,12 +7,18 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.a00gym.DataClass.Gym
+import com.example.a00gym.Interface.GymInterface
+import com.example.a00gym.RetrofitClient.GymRetrofitClient
 import com.example.a00gym.databinding.ActivityListBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ListActivity : AppCompatActivity() {
     private lateinit var tvSelectedDate: TextView
@@ -42,37 +48,47 @@ class ListActivity : AppCompatActivity() {
             }
         }
 
-        tvSelectedDate = findViewById(R.id.reserve_date)
-
         // Intent에서 전달된 날짜 정보를 받아서 표시
         val selectedDate = intent.getStringExtra("SELECTED_DATE")
-        tvSelectedDate.text = "날짜: $selectedDate"
+
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        val formattedDate = try {
+            val date = inputFormat.parse(selectedDate)
+            outputFormat.format(date)
+        } catch (e: Exception) {
+            selectedDate // 변환이 실패할 경우 그대로 사용
+        }
+        tvSelectedDate = findViewById(R.id.reserve_date)
+        tvSelectedDate.text = "날짜: $formattedDate"
 
         val back = findViewById<View>(R.id.back)
         back.setOnClickListener {
             finish()
         }
+    }
+    private fun updateUI(gyms: List<Gym>) {
+        val listView = findViewById<ListView>(R.id.listView)
 
-        val inquiry2 = findViewById<View>(R.id.inquiry2)
-        inquiry2.setOnClickListener {
+        // Gym 이름을 추출하여 리스트에 추가합니다.
+        val gymNames = gyms.map { it.gymName }
+
+        // ArrayAdapter를 사용하여 ListView에 데이터를 설정합니다.
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, gymNames)
+        listView.adapter = adapter
+
+        // ListView의 아이템을 클릭했을 때의 동작을 설정할 수 있습니다.
+        listView.setOnItemClickListener { _, _, position, _ ->
+            // 원하는 동작을 수행합니다. 예를 들어, 해당 위치의 Gym 데이터를 가져와서 다음 액티비티로 전달할 수 있습니다.
+            val selectedGym = gyms[position]
+            val selectedDate = intent.getStringExtra("SELECTED_DATE")
             val intent = Intent(this, TimelistActivity::class.java)
+            intent.putExtra("SELECTED_GYM_ID", selectedGym.id)
+            intent.putExtra("SELECTED_GYM_NAME", selectedGym.gymName)
             intent.putExtra("SELECTED_DATE", selectedDate)
             startActivity(intent)
         }
-    }
-    private fun updateUI(gyms: List<Gym>) {
-        // TextView로 체육관 정보를 표시할 것이라고 가정
-        val gymInfo = findViewById<TextView>(R.id.gym_info)
-
-        // 체육관 정보를 연결할 StringBuilder 생성
-        val stringBuilder = StringBuilder()
-
-        for (gym in gyms) {
-            stringBuilder.append("체육관 이름: ${gym.gymName}\n")
-        }
-
-        // TextView에 연결된 체육관 정보를 설정
-        gymInfo.text = stringBuilder.toString()
     }
     private fun getGymData(location: String) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
@@ -92,7 +108,6 @@ class ListActivity : AppCompatActivity() {
             }
         })
     }
-
 }
 
 

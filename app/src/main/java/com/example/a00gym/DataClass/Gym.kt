@@ -1,4 +1,4 @@
-package com.example.a00gym
+package com.example.a00gym.DataClass
 
 import com.google.gson.annotations.SerializedName
 

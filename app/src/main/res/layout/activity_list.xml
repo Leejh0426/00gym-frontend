@@ -73,30 +73,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/reserve_date"/>
 
-    <TextView
-        android:id="@+id/gym_info"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="280dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="20dp"
-        android:paddingTop="15dp"
-        android:fontFamily="@font/tenten"
-        android:background="#EBE6E6"
+        android:layout_height="400dp"
+        android:layout_below="@id/spinner"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/location"/>
-
-    <Button
-        android:id="@+id/inquiry2"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="630dp"
-        android:background="@drawable/button_round"
-        android:fontFamily="@font/tenten"
-        android:text="조회하기"
-        android:textSize="30dp"
-        android:inputType="phone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
