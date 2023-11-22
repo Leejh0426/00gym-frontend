@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -27,6 +26,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/gym_info"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="170dp"
+        android:paddingTop="15dp"
+        android:fontFamily="@font/tenten"
+        android:background="#EBE6E6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myinfo_top"/>
+
+    <TextView
+        android:id="@+id/reservationNumber"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:paddingTop="15dp"
+        android:fontFamily="@font/tenten"
+        android:background="#EBE6E6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gym_info"/>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:paddingTop="15dp"
+        android:fontFamily="@font/tenten"
+        android:background="#EBE6E6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reservationNumber"/>
+
+    <TextView
+        android:id="@+id/dateTime"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:paddingTop="15dp"
+        android:fontFamily="@font/tenten"
+        android:background="#EBE6E6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date"/>
+
+    <TextView
+        android:id="@+id/BookStatus"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:paddingTop="15dp"
+        android:fontFamily="@font/tenten"
+        android:background="#EBE6E6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateTime"/>
 
     <Button
         android:id="@+id/back"

@@ -2,14 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:paddingTop="25dp"
         android:paddingStart="100dp"
-        android:id="@+id/reserve_confirm"
+        android:id="@+id/dialog_message"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="예약 하시겠습니까?"
@@ -21,21 +20,21 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
-        android:id="@+id/successButton"
+        android:id="@+id/btnYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="예"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reserve_confirm" />
+        app:layout_constraintTop_toBottomOf="@+id/dialog_message" />
 
     <Button
-        android:id="@+id/closeButton"
+        android:id="@+id/btnNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="아니오"
-        app:layout_constraintStart_toEndOf="@id/successButton"
-        app:layout_constraintTop_toBottomOf="@+id/reserve_confirm"/>
+        app:layout_constraintStart_toEndOf="@id/btnYes"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_message"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

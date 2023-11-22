@@ -1,6 +1,7 @@
 package com.example.a00gym
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -87,6 +88,20 @@ class ListActivity : AppCompatActivity() {
             intent.putExtra("SELECTED_GYM_ID", selectedGym.id)
             intent.putExtra("SELECTED_GYM_NAME", selectedGym.gymName)
             intent.putExtra("SELECTED_DATE", selectedDate)
+            intent.putExtra("SELECTED_LOCATION", selectedGym.location)
+
+            val preferencesName = "MyPreferences"
+
+            // 쉐어드 프리퍼런스에 데이터 저장
+            val sharedPreferences = getSharedPreferences(preferencesName, Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            // 처음 선택한 지역 저장
+            editor.putString("selectedLocation", selectedGym.location)
+            // 체육관 이름 저장
+            editor.putString("selectedGymName", selectedGym.gymName)
+            // 변경 사항을 반영
+            editor.apply()
+
             startActivity(intent)
         }
     }

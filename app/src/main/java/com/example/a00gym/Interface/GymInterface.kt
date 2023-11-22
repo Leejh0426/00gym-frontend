@@ -1,6 +1,7 @@
 package com.example.a00gym.Interface
 
 import com.example.a00gym.DataClass.Gym
+import com.example.a00gym.DataClass.GymInquiry
 import com.example.a00gym.DataClass.GymReservation
 import com.example.a00gym.DataClass.GymStatus
 import retrofit2.Call
@@ -18,4 +19,7 @@ interface GymInterface {
 
     @POST("/reservation")
     fun postGymStatus(@Body gymReservation: GymReservation): Call<List<String>>
+
+    @GET("/reservation")
+    fun getGymInquiry(@Query("reservationDate") reservationDate: String, @Query("dateTime") dateTime: String,): Call<List<GymInquiry>>
 }

@@ -1,10 +1,12 @@
 package com.example.a00gym
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +27,7 @@ class TimelistActivity : AppCompatActivity() {
     private lateinit var btnNext2: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var gymStatusAdapter: GymStatusAdapter
+    private lateinit var selectedlocation: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timelist)
@@ -32,6 +35,7 @@ class TimelistActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        selectedlocation = intent.getStringExtra("SELECTED_LOCATION").toString()
         val selectedGymID = intent.getIntExtra("SELECTED_GYM_ID", -1)
         Log.d("TimelistActivity", "Selected Gym ID: $selectedGymID")
         // Intent에서 전달된 날짜 정보를 받아서 표시
@@ -60,6 +64,11 @@ class TimelistActivity : AppCompatActivity() {
         btnNext2.setOnClickListener {
             getGymStatus(selectedGymID, selectedDate.toString())
         }
+
+        val back = findViewById<View>(R.id.back)
+        back.setOnClickListener {
+            finish()
+        }
     }
     private fun updateUI(gyms: List<GymStatus>) {
         // TextView에 연결된 체육관 정보를 설정
@@ -79,6 +88,17 @@ class TimelistActivity : AppCompatActivity() {
                 intent.putExtra("SELECTED_GYMSTATUS_ID", selectedGymStatus.id)
                 intent.putExtra("SELECTED_DATE", selectedDate)
                 intent.putExtra("SELECTED_GYM_NAME", selectedGymName)
+                intent.putExtra("TOTAL_NUMBER", selectedGymStatus.totalNumber)
+
+                val preferencesName1 = "MyPreferences1"
+
+                // 쉐어드 프리퍼런스에 데이터 저장
+                val sharedPreferences1 = getSharedPreferences(preferencesName1, Context.MODE_PRIVATE)
+                val editor = sharedPreferences1.edit()
+                //get요청으로 불러온 총원 저장
+                editor.putInt("TOTAL_NUMBER", selectedGymStatus.totalNumber)
+                // 변경 사항을 반영
+                editor.apply()
 
                 // 다음 액티비티 시작
                 startActivity(intent)
