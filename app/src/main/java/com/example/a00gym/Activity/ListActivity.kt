@@ -1,4 +1,4 @@
-package com.example.a00gym
+package com.example.a00gym.Activity
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,8 +11,9 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.a00gym.DataClass.Gym
+import com.example.a00gym.DataClass.GymResponse
 import com.example.a00gym.Interface.GymInterface
+import com.example.a00gym.R
 import com.example.a00gym.RetrofitClient.GymRetrofitClient
 import com.example.a00gym.databinding.ActivityListBinding
 import retrofit2.Call
@@ -41,6 +42,7 @@ class ListActivity : AppCompatActivity() {
         mBinding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 Log.d("FlightList", "선택")
+                Log.d("선택", "선택못함")
                 mBinding.location.text = parent.getItemAtPosition(position).toString()
                 getGymData(parent.getItemAtPosition(position).toString())
             }
@@ -69,10 +71,11 @@ class ListActivity : AppCompatActivity() {
             finish()
         }
     }
-    private fun updateUI(gyms: List<Gym>) {
+    private fun updateUI(gymResponse: GymResponse) {
         val listView = findViewById<ListView>(R.id.listView)
 
         // Gym 이름을 추출하여 리스트에 추가합니다.
+        val gyms = gymResponse.result
         val gymNames = gyms.map { it.gymName }
 
         // ArrayAdapter를 사용하여 ListView에 데이터를 설정합니다.
@@ -107,18 +110,18 @@ class ListActivity : AppCompatActivity() {
     }
     private fun getGymData(location: String) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
-        gymInterface.getGyms(location).enqueue(object : Callback<List<Gym>> {
+        gymInterface.getGyms(location).enqueue(object : Callback<GymResponse> {
             @SuppressLint("SetTextI18n")
-            override fun onResponse(call: Call<List<Gym>>, response: Response<List<Gym>>) {
+            override fun onResponse(call: Call<GymResponse>, response: Response<GymResponse>) {
                 if (response.isSuccessful) {
                     Log.d("Gymlist", "체육관 목록 요청 성공")
                     Log.d("Gymlist", "받은 데이터: ${response.body()}")
 
-                    updateUI(response.body() ?: emptyList())
+                    updateUI(response.body() as GymResponse)
                 }
             }
 
-            override fun onFailure(call: Call<List<Gym>>, t: Throwable) {
+            override fun onFailure(call: Call<GymResponse>, t: Throwable) {
                 Log.d("GymList", "체육관 목록 요청 실패")
             }
         })

@@ -14,7 +14,6 @@ class GymStatusAdapter(private val gymStatusList: List<GymStatus>) :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textDateTime: TextView = itemView.findViewById(R.id.textDateTime)
-        // 다른 뷰들을 여기에 추가할 수 있습니다.
     }
 
     // 아이템 클릭 리스너 인터페이스
@@ -31,8 +30,7 @@ class GymStatusAdapter(private val gymStatusList: List<GymStatus>) :
         val gymStatus = gymStatusList[position]
 
         // 데이터를 뷰에 바인딩
-        holder.textDateTime.text = gymStatus.dateTime
-        // 다른 데이터를 뷰에 바인딩할 수 있습니다.
+        holder.textDateTime.text ="${gymStatus.dateTime}, 수용 가능 인원: ${gymStatus.remainder}"
         Log.d("YourActivityTag", "ItemCount: ${gymStatusList.size}")
 
         holder.itemView.setOnClickListener {

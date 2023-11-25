@@ -1,9 +1,10 @@
-package com.example.a00gym
+package com.example.a00gym.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.a00gym.R
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,6 +14,11 @@ class HomeActivity : AppCompatActivity() {
         val reserve = findViewById<View>(R.id.reserve)
         reserve.setOnClickListener {
             val intent = Intent(this, DateActivity::class.java)
+            startActivity(intent)
+        }
+        val reserveInquiry = findViewById<View>(R.id.reserve_inquiry)
+        reserveInquiry.setOnClickListener {
+            val intent = Intent(this, InquiryActivity::class.java)
             startActivity(intent)
         }
     }

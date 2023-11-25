@@ -1,25 +1,29 @@
-package com.example.a00gym
+package com.example.a00gym.Activity
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.example.a00gym.DataClass.GymInquiry
+import com.example.a00gym.CustomDialog
+import com.example.a00gym.DataClass.GymInquiryResponse
+import com.example.a00gym.DataClass.ReservationCancleResponse
 import com.example.a00gym.Interface.GymInterface
+import com.example.a00gym.R
 import com.example.a00gym.RetrofitClient.GymRetrofitClient
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class InquiryActivity : AppCompatActivity() {
+class InquiryActivity : AppCompatActivity(){
     private lateinit var tvselectedGymName: TextView
     private lateinit var tvbookStatus: TextView
+    private lateinit var gymInquiryResponse: GymInquiryResponse
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inquiry)
@@ -32,17 +36,20 @@ class InquiryActivity : AppCompatActivity() {
         // 쉐어드 프리퍼런스에서 데이터 불러오기
         val sharedPreferences1 = getSharedPreferences("MyPreferences1", Context.MODE_PRIVATE)
         // 저장된 총원 정보 불러오기
-        val savedtotalNumber = sharedPreferences1.getInt("TOTAL_NUMBER", 0)
+        val savedTotalNumber = sharedPreferences1.getInt("TOTAL_NUMBER", 0)
 
-        val reservationNumber = intent.getIntExtra("RESERVATION_NUMBER", -1)
+
+        val savedReservationNumber = sharedPreferences.getString("reservationNumber", "")
         val reservationDate = intent.getStringExtra("SELECTED_DATE")
         val dateTime = intent.getStringExtra("SELECTED_DATETIME")
+        Log.d("InquiryActivity", "$reservationDate")
+        Log.d("InquiryActivity", "$dateTime")
 
         tvselectedGymName = findViewById(R.id.gym_info)
         tvselectedGymName.text = "지역/풋살장명: $savedLocation/$savedGymName"
 
         tvbookStatus = findViewById(R.id.BookStatus)
-        tvbookStatus.text = "풋살장 예약현황: $reservationNumber / $savedtotalNumber "
+        tvbookStatus.text = "풋살장 예약현황: $savedReservationNumber / $savedTotalNumber "
 
 
 
@@ -50,21 +57,27 @@ class InquiryActivity : AppCompatActivity() {
 
         val back = findViewById<View>(R.id.back)
         back.setOnClickListener {
-            finish()
+            var intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+        val clBtn = findViewById<View>(R.id.cancle_btn)
+        clBtn.setOnClickListener {
+            showCancelDialog(gymInquiryResponse)
         }
     }
-    private fun updateUI(gyms: List<GymInquiry>) {
+    private fun updateUI(gymInquiryResponse: GymInquiryResponse) {
+        val gyms = gymInquiryResponse.result
         val reservationNumber = findViewById<TextView>(R.id.reservationNumber)
         val date = findViewById<TextView>(R.id.date)
         val dateTime = findViewById<TextView>(R.id.dateTime)
         if (gyms.isNotEmpty()) {
-            val firstGym = gyms[0]
+            val firstGym = gyms.last()
             reservationNumber.text = "내 예약인원: ${firstGym.reservationNumber}"
         } else {
             reservationNumber.text = "예약된 내역이 없습니다."
         }
         if (gyms.isNotEmpty()) {
-            val firstGym = gyms[0]
+            val firstGym = gyms.last()
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
             val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
@@ -79,7 +92,7 @@ class InquiryActivity : AppCompatActivity() {
             date.text = "예약된 내역이 없습니다."
         }
         if (gyms.isNotEmpty()) {
-            val firstGym = gyms[0]
+            val firstGym = gyms.last()
             dateTime.text = "예약시간: ${firstGym.dateTime}"
         } else {
             dateTime.text = "예약된 내역이 없습니다."
@@ -88,20 +101,65 @@ class InquiryActivity : AppCompatActivity() {
 
     private fun getGymInquiry(reservationDate: String, dateTime: String) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
-        gymInterface.getGymInquiry(reservationDate, dateTime).enqueue(object : Callback<List<GymInquiry>> {
+        gymInterface.getGymInquiry(reservationDate, dateTime).enqueue(object : Callback<GymInquiryResponse> {
             @SuppressLint("SetTextI18n")
-            override fun onResponse(call: Call<List<GymInquiry>>, response: Response<List<GymInquiry>>) {
+            override fun onResponse(call: Call<GymInquiryResponse>, response: Response<GymInquiryResponse>) {
                 if (response.isSuccessful) {
                     Log.d("InquiryActivity", "예약조회 성공")
                     Log.d("InquiryActivity", "받은 데이터: ${response.body()}")
 
-                    updateUI(response.body() ?: emptyList())
+                    gymInquiryResponse = response.body() as GymInquiryResponse
+                    updateUI(gymInquiryResponse)
                 }
             }
 
-            override fun onFailure(call: Call<List<GymInquiry>>, t: Throwable) {
+            override fun onFailure(call: Call<GymInquiryResponse>, t: Throwable) {
                 Log.d("InquiryActivity", "예약조회 실패: ${t.message}")
             }
         })
+    }
+    private fun showCancelDialog(gymInquiryResponse: GymInquiryResponse) {
+        val gyms1 = gymInquiryResponse.result
+        val gyms2 = gyms1.last()
+        val dialog = CustomDialog(this,
+            onCancel = {},
+            onYes = {
+                deleteReservation(gyms2.reservationId)
+                Log.d("InquiryActivity", "삭제요청: ${gyms2.reservationId}")
+            }
+        )
+        dialog.show()
+    }
+    private fun deleteReservation(reservationId: Int) {
+        Log.d("InquiryActivity", "삭제 요청 시작: $reservationId")
+        val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
+        gymInterface.deleteReservation(reservationId).enqueue(object : Callback<ReservationCancleResponse> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: Call<ReservationCancleResponse>, response: Response<ReservationCancleResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("InquiryActivity", "삭제 요청 성공")
+                    Log.d("InquiryActivity", "받은 데이터: ${response.body()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<ReservationCancleResponse>, t: Throwable) {
+                Log.d("InquiryActivity", "삭제 요청 실패: ${t.message}")
+            }
+        })
+
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        // 쉐어드 프리퍼런스 데이터 삭제
+        clearSharedPreferences()
+    }
+
+    private fun clearSharedPreferences() {
+        // 쉐어드 프리퍼런스에서 데이터 삭제
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        sharedPreferences.edit().clear().apply()
+
+        val sharedPreferences1 = getSharedPreferences("MyPreferences1", Context.MODE_PRIVATE)
+        sharedPreferences1.edit().clear().apply()
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ListActivity">
+    tools:context=".Activity.ListActivity">
 
     <View
         android:id="@+id/list_top"
@@ -67,6 +67,9 @@
         android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
+        android:paddingTop="15dp"
+        android:paddingStart="120dp"
+        android:textSize="15dp"
         android:fontFamily="@font/tenten"
         android:background="#EBE6E6"
         app:layout_constraintStart_toStartOf="parent"

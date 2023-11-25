@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class Gym(
     @SerializedName("id") val id: Int,
     @SerializedName("location") val location: String,
-    @SerializedName("gym_name") val gymName: String,
-    @SerializedName("total_number") val totalNumber: Int
+    @SerializedName("gymName") val gymName: String,
+    @SerializedName("totalNumber") val totalNumber: Int
 )
