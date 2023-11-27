@@ -1,5 +1,5 @@
 package com.example.a00gym.DataClass
 
-data class ReservationCancleResponse(
+data class ReservationCResponse(
     val result: String
 ) : GymBase()

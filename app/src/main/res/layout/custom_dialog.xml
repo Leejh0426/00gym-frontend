@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:paddingTop="25dp"
+        android:paddingTop="15dp"
         android:paddingStart="30dp"
         android:id="@+id/dialog_message"
         android:layout_width="match_parent"

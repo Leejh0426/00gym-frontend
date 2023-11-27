@@ -16,7 +16,6 @@ class GymStatusAdapter(private val gymStatusList: List<GymStatus>) :
         val textDateTime: TextView = itemView.findViewById(R.id.textDateTime)
     }
 
-    // 아이템 클릭 리스너 인터페이스
     interface OnItemClickListener {
         fun onItemClick(gymStatus: GymStatus)
     }

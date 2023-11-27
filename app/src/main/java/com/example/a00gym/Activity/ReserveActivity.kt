@@ -62,8 +62,8 @@ class ReserveActivity : AppCompatActivity() {
         val selectedGymStatusId = intent.getIntExtra("SELECTED_GYMSTATUS_ID", -1)
         Log.d("ReserveActivity", "Selected Gym ID: $selectedGymStatusId")
 
-        btnNext = findViewById(R.id.reserveationNumber)
-        btnNext.setOnClickListener {
+        btnNext = findViewById(R.id.reservationNumber)
+        btnNext.setOnClickListener { // reservation
             val userInputNumber = findViewById<EditText>(R.id.reserve_people).text.toString()// EditText 등에서 사용자가 입력한 숫자를 받아옴
             Log.d("ReserveActivity", "넣은 숫자: ${userInputNumber.toInt()}")
             val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
@@ -118,7 +118,6 @@ class ReserveActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<GymReservationResponse>, t: Throwable) {
                 t.printStackTrace()
-                // 실패 시 수행할 작업
                 Log.d("ReserveActivity", "post 요청 실패2: ${t.message}")
             }
         })

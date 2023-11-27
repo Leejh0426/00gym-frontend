@@ -41,7 +41,6 @@ class DateActivity : AppCompatActivity() {
             val intent = Intent(this, ListActivity::class.java)
             intent.putExtra("SELECTED_DATE", dateString)
 
-            // 다음 화면으로 이동
             startActivity(intent)
         }
 

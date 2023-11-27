@@ -1,12 +1,10 @@
-package com.example.a00gym
+package com.example.a00gym.Dialog
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.WindowManager
 import android.widget.Button
-import com.example.a00gym.DataClass.GymInquiry
-import com.example.a00gym.databinding.CustomDialogBinding
+import com.example.a00gym.R
 
 class CustomDialog(context: Context, private val onCancel: () -> Unit, private val onYes: () -> Unit) : Dialog(context) {
 

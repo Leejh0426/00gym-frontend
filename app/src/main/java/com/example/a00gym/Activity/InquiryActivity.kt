@@ -8,9 +8,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.example.a00gym.CustomDialog
+import com.example.a00gym.Dialog.CustomDialog
 import com.example.a00gym.DataClass.GymInquiryResponse
-import com.example.a00gym.DataClass.ReservationCancleResponse
+import com.example.a00gym.DataClass.ReservationCResponse
 import com.example.a00gym.Interface.GymInterface
 import com.example.a00gym.R
 import com.example.a00gym.RetrofitClient.GymRetrofitClient
@@ -73,8 +73,6 @@ class InquiryActivity : AppCompatActivity(){
         if (gyms.isNotEmpty()) {
             val firstGym = gyms.last()
             reservationNumber.text = "내 예약인원: ${firstGym.reservationNumber}"
-        } else {
-            reservationNumber.text = "예약된 내역이 없습니다."
         }
         if (gyms.isNotEmpty()) {
             val firstGym = gyms.last()
@@ -88,14 +86,10 @@ class InquiryActivity : AppCompatActivity(){
                 firstGym.reservationDate 
             }
             date.text = "예약날짜: $formattedDate"
-        } else {
-            date.text = "예약된 내역이 없습니다."
         }
         if (gyms.isNotEmpty()) {
             val firstGym = gyms.last()
             dateTime.text = "예약시간: ${firstGym.dateTime}"
-        } else {
-            dateTime.text = "예약된 내역이 없습니다."
         }
     }
 
@@ -121,6 +115,7 @@ class InquiryActivity : AppCompatActivity(){
     private fun showCancelDialog(gymInquiryResponse: GymInquiryResponse) {
         val gyms1 = gymInquiryResponse.result
         val gyms2 = gyms1.last()
+        // Yes 버튼을 누르면 reservationId로 delete요청
         val dialog = CustomDialog(this,
             onCancel = {},
             onYes = {
@@ -133,9 +128,9 @@ class InquiryActivity : AppCompatActivity(){
     private fun deleteReservation(reservationId: Int) {
         Log.d("InquiryActivity", "삭제 요청 시작: $reservationId")
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
-        gymInterface.deleteReservation(reservationId).enqueue(object : Callback<ReservationCancleResponse> {
+        gymInterface.deleteReservation(reservationId).enqueue(object : Callback<ReservationCResponse> {
             @SuppressLint("SetTextI18n")
-            override fun onResponse(call: Call<ReservationCancleResponse>, response: Response<ReservationCancleResponse>) {
+            override fun onResponse(call: Call<ReservationCResponse>, response: Response<ReservationCResponse>) {
                 if (response.isSuccessful) {
                     Log.d("InquiryActivity", "삭제 요청 성공")
                     Log.d("InquiryActivity", "받은 데이터: ${response.body()}")
@@ -143,23 +138,24 @@ class InquiryActivity : AppCompatActivity(){
                 }
             }
 
-            override fun onFailure(call: Call<ReservationCancleResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ReservationCResponse>, t: Throwable) {
                 Log.d("InquiryActivity", "삭제 요청 실패: ${t.message}")
             }
         })
-
+        // 삭제 함수 호출
+        clearSharedPreferences()
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
-        // 쉐어드 프리퍼런스 데이터 삭제
-        clearSharedPreferences()
     }
 
+    // 쉐어드 프리퍼런스 데이터 삭제
     private fun clearSharedPreferences() {
-        // 쉐어드 프리퍼런스에서 데이터 삭제
+        Log.d("InquiryActivity", "clearSharedPreferences() 시작")
         val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
         sharedPreferences.edit().clear().apply()
 
         val sharedPreferences1 = getSharedPreferences("MyPreferences1", Context.MODE_PRIVATE)
         sharedPreferences1.edit().clear().apply()
+        Log.d("InquiryActivity", "clearSharedPreferences() 완료")
     }
 }

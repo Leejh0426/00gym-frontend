@@ -78,7 +78,7 @@
     <TextView
         android:id="@+id/reserve_time"
         android:layout_width="280dp"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_marginTop="20dp"
         android:paddingTop="15dp"
         android:fontFamily="@font/tenten"
@@ -89,7 +89,7 @@
 
     <EditText
         android:id="@+id/reserve_people"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:ems="15"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@id/reserve_time"/>
 
     <Button
-        android:id="@+id/reserveationNumber"
+        android:id="@+id/reservationNumber"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="60dp"

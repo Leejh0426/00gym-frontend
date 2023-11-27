@@ -5,7 +5,7 @@ import com.example.a00gym.DataClass.GymReservation
 import com.example.a00gym.DataClass.GymReservationResponse
 import com.example.a00gym.DataClass.GymResponse
 import com.example.a00gym.DataClass.GymStatusResponse
-import com.example.a00gym.DataClass.ReservationCancleResponse
+import com.example.a00gym.DataClass.ReservationCResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -28,5 +28,5 @@ interface GymInterface {
     fun getGymInquiry(@Query("reservationDate") reservationDate: String, @Query("dateTime") dateTime: String,): Call<GymInquiryResponse>
 
     @DELETE("/reservation/{reservationId}")
-    fun deleteReservation(@Path("reservationId") reservationId: Int): Call<ReservationCancleResponse>
+    fun deleteReservation(@Path("reservationId") reservationId: Int): Call<ReservationCResponse>
 }

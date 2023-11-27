@@ -16,7 +16,7 @@
 
     <TextView
         android:paddingTop="25dp"
-        android:paddingStart="190dp"
+        android:paddingStart="170dp"
         android:id="@+id/top_title"
         android:layout_width="match_parent"
         android:layout_height="80dp"
