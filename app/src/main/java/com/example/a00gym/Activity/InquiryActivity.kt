@@ -93,6 +93,7 @@ class InquiryActivity : AppCompatActivity(){
         }
     }
 
+    // 예약한 날짜와 예약 시간을 통해 예약조회를 위한 get 요청
     private fun getGymInquiry(reservationDate: String, dateTime: String) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
         gymInterface.getGymInquiry(reservationDate, dateTime).enqueue(object : Callback<GymInquiryResponse> {
@@ -112,6 +113,7 @@ class InquiryActivity : AppCompatActivity(){
             }
         })
     }
+    // 예약취소 다이얼로그를 띄웠을 때 할 동작 함수 정의
     private fun showCancelDialog(gymInquiryResponse: GymInquiryResponse) {
         val gyms1 = gymInquiryResponse.result
         val gyms2 = gyms1.last()
@@ -125,6 +127,7 @@ class InquiryActivity : AppCompatActivity(){
         )
         dialog.show()
     }
+    // 예약한 reservationId를 가지고 delete 요청
     private fun deleteReservation(reservationId: Int) {
         Log.d("InquiryActivity", "삭제 요청 시작: $reservationId")
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)

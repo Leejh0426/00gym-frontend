@@ -15,18 +15,18 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface GymInterface {
-    @GET("/gym")
+    @GET("/gym") // 체육관 list get요청
     fun getGyms(@Query("location") location: String): Call<GymResponse>
 
-    @GET("/gymstatus")
+    @GET("/gymstatus") // 체육관 현재 정보 get요청
     fun getGymDetails(@Query("id") id: Int, @Query("time") time: String): Call<GymStatusResponse>
 
-    @POST("/reservation")
+    @POST("/reservation") // 체육관 id와 사용자가 입력한 숫자로 Post요청
     fun postGymStatus(@Body gymReservation: GymReservation): Call<GymReservationResponse>
 
-    @GET("/reservation")
+    @GET("/reservation") // 예약조회를 위한 get요청
     fun getGymInquiry(@Query("reservationDate") reservationDate: String, @Query("dateTime") dateTime: String,): Call<GymInquiryResponse>
 
-    @DELETE("/reservation/{reservationId}")
+    @DELETE("/reservation/{reservationId}") // 예약취소를 위한 delete요청
     fun deleteReservation(@Path("reservationId") reservationId: Int): Call<ReservationCResponse>
 }

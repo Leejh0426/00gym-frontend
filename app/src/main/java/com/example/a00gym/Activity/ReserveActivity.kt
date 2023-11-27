@@ -42,7 +42,7 @@ class ReserveActivity : AppCompatActivity() {
         val selectedDate = intent.getStringExtra("SELECTED_DATE")
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
         val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val formattedDate = try {
+        val formattedDate = try { // 날짜 정보만 화면에 표출하도록 변환해서 저장
             val date = inputFormat.parse(selectedDate)
             outputFormat.format(date)
         } catch (e: Exception) {
@@ -63,7 +63,7 @@ class ReserveActivity : AppCompatActivity() {
         Log.d("ReserveActivity", "Selected Gym ID: $selectedGymStatusId")
 
         btnNext = findViewById(R.id.reservationNumber)
-        btnNext.setOnClickListener { // reservation
+        btnNext.setOnClickListener { // btnNext 버튼을 눌러 예약하고 post요청
             val userInputNumber = findViewById<EditText>(R.id.reserve_people).text.toString()// EditText 등에서 사용자가 입력한 숫자를 받아옴
             Log.d("ReserveActivity", "넣은 숫자: ${userInputNumber.toInt()}")
             val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
@@ -88,6 +88,7 @@ class ReserveActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this@ReserveActivity, message, Toast.LENGTH_SHORT).show()
     }
+    // reservationId를 이용해 post 요청
     private fun postGymStatusToServer(gymReservation: GymReservation, onComplete: () -> Unit) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
         val call = gymInterface.postGymStatus(gymReservation)

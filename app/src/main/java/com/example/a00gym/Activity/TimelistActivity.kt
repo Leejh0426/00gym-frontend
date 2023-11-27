@@ -117,6 +117,7 @@ class TimelistActivity : AppCompatActivity() {
         })
     }
 
+    // 한 체육관의 예약 시간과, 수용 인원을 표출하기 위해 get 요청
     private fun getGymStatus(id: Int, selectedDate: String) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
         gymInterface.getGymDetails(id, selectedDate).enqueue(object : Callback<GymStatusResponse> {

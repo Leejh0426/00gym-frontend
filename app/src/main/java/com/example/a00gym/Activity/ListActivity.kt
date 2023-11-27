@@ -39,6 +39,7 @@ class ListActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, testList)
         mBinding.spinner.adapter = adapter
 
+        // spinner에서 선택한 정보로 get요청을 하여 adapter형태로 띄움
         mBinding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 Log.d("FlightList", "선택")
@@ -108,6 +109,7 @@ class ListActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    // 데이터 베이스에 저장된 체육관 목록을 띄우기 위해 get 요청
     private fun getGymData(location: String) {
         val gymInterface = GymRetrofitClient.fRetrofit.create(GymInterface::class.java)
         gymInterface.getGyms(location).enqueue(object : Callback<GymResponse> {

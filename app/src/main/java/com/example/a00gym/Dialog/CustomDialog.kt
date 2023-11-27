@@ -15,12 +15,12 @@ class CustomDialog(context: Context, private val onCancel: () -> Unit, private v
         val btnYes = findViewById<Button>(R.id.btnYes)
         val btnCancel = findViewById<Button>(R.id.btnNo)
 
-        btnYes.setOnClickListener {
+        btnYes.setOnClickListener { // Yes버튼 눌렀을 때 동작
             onYes.invoke()
             dismiss()
         }
 
-        btnCancel.setOnClickListener {
+        btnCancel.setOnClickListener { // No버튼 눌렀을 때 동작
             onCancel.invoke()
             dismiss()
         }
