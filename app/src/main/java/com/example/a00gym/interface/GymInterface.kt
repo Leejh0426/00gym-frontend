@@ -1,11 +1,11 @@
-package com.example.a00gym.Interface
+package com.example.a00gym.`interface`
 
-import com.example.a00gym.DataClass.GymInquiryResponse
-import com.example.a00gym.DataClass.GymReservation
-import com.example.a00gym.DataClass.GymReservationResponse
-import com.example.a00gym.DataClass.GymResponse
-import com.example.a00gym.DataClass.GymStatusResponse
-import com.example.a00gym.DataClass.ReservationCResponse
+import com.example.a00gym.dataclass.GymInquiryResponse
+import com.example.a00gym.dataclass.GymReservation
+import com.example.a00gym.dataclass.GymReservationResponse
+import com.example.a00gym.dataclass.GymResponse
+import com.example.a00gym.dataclass.GymStatusResponse
+import com.example.a00gym.dataclass.ReservationCResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE

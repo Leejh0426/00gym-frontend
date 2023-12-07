@@ -1,4 +1,4 @@
-package com.example.a00gym.DataClass
+package com.example.a00gym.dataclass
 
 data class GymInquiryResponse(
     val result: List<GymInquiry>

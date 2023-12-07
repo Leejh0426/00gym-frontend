@@ -1,4 +1,4 @@
-package com.example.a00gym.Activity
+package com.example.a00gym.activity
 
 import android.content.Context
 import android.content.Intent
@@ -10,12 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.a00gym.DataClass.ErrorResponse
-import com.example.a00gym.DataClass.GymReservation
-import com.example.a00gym.DataClass.GymReservationResponse
-import com.example.a00gym.Interface.GymInterface
+import com.example.a00gym.dataclass.ErrorResponse
+import com.example.a00gym.dataclass.GymReservation
+import com.example.a00gym.dataclass.GymReservationResponse
+import com.example.a00gym.`interface`.GymInterface
 import com.example.a00gym.R
-import com.example.a00gym.RetrofitClient.GymRetrofitClient
+import com.example.a00gym.retrofitClient.GymRetrofitClient
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback

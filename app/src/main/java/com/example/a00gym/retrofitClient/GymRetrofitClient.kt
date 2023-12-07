@@ -1,4 +1,4 @@
-package com.example.a00gym.RetrofitClient
+package com.example.a00gym.retrofitClient
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

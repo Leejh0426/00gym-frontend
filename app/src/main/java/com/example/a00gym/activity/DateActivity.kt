@@ -1,4 +1,4 @@
-package com.example.a00gym.Activity
+package com.example.a00gym.activity
 
 
 import android.content.Intent

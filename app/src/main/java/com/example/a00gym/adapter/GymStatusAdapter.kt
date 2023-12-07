@@ -1,4 +1,4 @@
-package com.example.a00gym.Adapter
+package com.example.a00gym.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a00gym.DataClass.GymStatus
+import com.example.a00gym.dataclass.GymStatus
 import com.example.a00gym.R
 
 class GymStatusAdapter(private val gymStatusList: List<GymStatus>) :

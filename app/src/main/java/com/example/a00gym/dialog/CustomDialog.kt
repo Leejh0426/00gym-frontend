@@ -1,4 +1,4 @@
-package com.example.a00gym.Dialog
+package com.example.a00gym.dialog
 
 import android.app.Dialog
 import android.content.Context

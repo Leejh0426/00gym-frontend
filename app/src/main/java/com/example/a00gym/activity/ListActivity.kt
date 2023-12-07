@@ -1,4 +1,4 @@
-package com.example.a00gym.Activity
+package com.example.a00gym.activity
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,10 +11,10 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.a00gym.DataClass.GymResponse
-import com.example.a00gym.Interface.GymInterface
+import com.example.a00gym.dataclass.GymResponse
+import com.example.a00gym.`interface`.GymInterface
 import com.example.a00gym.R
-import com.example.a00gym.RetrofitClient.GymRetrofitClient
+import com.example.a00gym.retrofitClient.GymRetrofitClient
 import com.example.a00gym.databinding.ActivityListBinding
 import retrofit2.Call
 import retrofit2.Callback

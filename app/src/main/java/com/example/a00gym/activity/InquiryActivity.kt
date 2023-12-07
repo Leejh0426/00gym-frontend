@@ -1,4 +1,4 @@
-package com.example.a00gym.Activity
+package com.example.a00gym.activity
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,12 +8,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.example.a00gym.Dialog.CustomDialog
-import com.example.a00gym.DataClass.GymInquiryResponse
-import com.example.a00gym.DataClass.ReservationCResponse
-import com.example.a00gym.Interface.GymInterface
+import android.widget.Toast
+import com.example.a00gym.dialog.CustomDialog
+import com.example.a00gym.dataclass.GymInquiryResponse
+import com.example.a00gym.dataclass.ReservationCResponse
+import com.example.a00gym.`interface`.GymInterface
 import com.example.a00gym.R
-import com.example.a00gym.RetrofitClient.GymRetrofitClient
+import com.example.a00gym.dataclass.ErrorResponse
+import com.example.a00gym.retrofitClient.GymRetrofitClient
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -138,6 +141,20 @@ class InquiryActivity : AppCompatActivity(){
                     Log.d("InquiryActivity", "삭제 요청 성공")
                     Log.d("InquiryActivity", "받은 데이터: ${response.body()}")
 
+                } else {
+                    // 실패 시 수행할 작업
+                    Log.d("InquiryActivity", "삭제 요청 실패")
+                    Log.d("InquiryActivity", "삭제 요청 응답 코드: ${response.code()}")
+                    try {
+                        // 실패 시 서버 응답의 상세 내용을 로그에 출력
+                        val errorBody = response.errorBody()?.string()
+                        Log.d("InquiryActivity", "Error Body: $errorBody")
+
+                        val errorMessage = Gson().fromJson(errorBody, ErrorResponse::class.java)
+                        showToast(message = errorMessage.message)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
             }
 
@@ -149,6 +166,9 @@ class InquiryActivity : AppCompatActivity(){
         clearSharedPreferences()
         val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this@InquiryActivity, message, Toast.LENGTH_SHORT).show()
     }
 
     // 쉐어드 프리퍼런스 데이터 삭제
