@@ -65,6 +65,11 @@ class ReserveActivity : AppCompatActivity() {
         btnNext = findViewById(R.id.reservationNumber)
         btnNext.setOnClickListener { // btnNext 버튼을 눌러 예약하고 post요청
             val userInputNumber = findViewById<EditText>(R.id.reserve_people).text.toString()// EditText 등에서 사용자가 입력한 숫자를 받아옴
+            if (userInputNumber.isBlank()) {
+                // 입력이 비어있을 경우 Toast 메시지를 표시하여 알림
+                showToast("숫자를 입력하세요.")
+                return@setOnClickListener
+            }
             Log.d("ReserveActivity", "넣은 숫자: ${userInputNumber.toInt()}")
             val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
